@@ -1,0 +1,19 @@
+[project]
+name = "deid-pipeline"
+version = "0.1.0"
+description = "Two-step PHI tagging and de-identification pipeline"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "pyyaml>=6.0.0",
+    "torch",
+    "transformers",
+    "peft",
+    "bitsandbytes",
+]
+
+[project.scripts]
+deid-pipeline = "deid_pipeline.cli:main"
+
+[tool.uv]
+package = true

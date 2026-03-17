@@ -1,0 +1,52 @@
+project_name: sample
+
+hardware:
+  gpus: [2, 3]
+  phi_num_shards: 4
+  deid_num_shards: 4
+
+paths:
+  raw_input_csv: data/sample.csv
+  output_root: outputs
+
+phi_stage:
+  model_id: /data/llmcache/tokyotech-llm/Llama-3.1-Swallow-8B-Instruct-v0.5
+  lora_path: outputs/models/llama-3.1_phi_tag/best
+  guideline_path: data/guideline_phi_ner.txt
+  input_col: text
+  output_col: pred_anonymized_text
+  max_input_length: 1024
+  max_new_tokens: 1024
+  temperature: 0.0
+  top_p: 1.0
+  repetition_penalty: 1.0
+
+prepare_stage:
+  input_phi_col: pred_anonymized_text
+  output_phi_col: pred_phi_text
+  location_csv: data/location297.csv
+  location_col: full_address
+  name1_ndjson: data/name1.ndjson
+  name2_ndjson: data/name2.ndjson
+  name_col: name
+  num_name_candidates: 3
+  num_location_candidates: 3
+
+deid_stage:
+  model_id: /data/llmcache/tokyotech-llm/Llama-3.1-Swallow-8B-Instruct-v0.5
+  guideline_dir: data/guidelines
+  input_col: pred_phi_text
+  output_col: pred_anonymized_text
+  name_list_col: name_list
+  location_list_col: location_list
+  phone_list_col: phone_list
+  max_input_length: 2048
+  max_new_tokens: 1024
+  temperature: 0.0
+  top_p: 1.0
+  repetition_penalty: 1.0
+  use_4bit: true
+
+runtime:
+  seed: 42
+  save_every: 50

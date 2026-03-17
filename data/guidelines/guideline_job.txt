@@ -1,0 +1,5 @@
+
+- <phi_job>...</phi_job>：自然な別職業に
+
+  入力例｜職業：<phi_job>会社員</phi_job>、同居家族：<phi_job>看護師</phi_job>
+  出力例｜職業：<phi_job>公務員</phi_job>、同居家族：<phi_job>介護職</phi_job>

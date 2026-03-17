@@ -1,0 +1,12 @@
+
+- <phi_location>...</phi_location>：【重要】以下のリストからのみ選択すること。リスト外の地名は使用禁止。
+  ★Candidate Locations★：（ここにLocationsリストを貼る）
+  ※粒度は元に合わせる（県のみ→県のみ、市区町村まで→市区町村まで、番地まで→番地まで）
+
+  入力例｜<phi_location>東京都杉並区</phi_location>在住。
+  Candidate Locations例｜青璃県角末市影綾町2丁目
+  出力例｜<phi_location>青璃県角末市</phi_location>在住。
+
+  入力例｜先週<phi_location>東京リゾート</phi_location>へ旅行
+  Candidate Locations例｜青璃県角末市影綾町2丁目
+  出力例｜先週<phi_location>青璃リゾート</phi_location>へ旅行

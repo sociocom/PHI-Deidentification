@@ -1,0 +1,8 @@
+- <phi_tel>...</phi_tel>：【重要】以下のリストからのみ選択すること。リスト外の地名は使用禁止。
+  ★Candidate Phones★：（ここにPhonesリストを貼る）
+
+    入力例｜連絡先：<phi_tel>03-1234-5678</phi_tel>、代表：<phi_tel>0120-123-213</phi_tel>
+    出力例｜連絡先：<phi_tel>03-4567-8901</phi_tel>、代表：<phi_tel>0120-456-546</phi_tel>
+
+    入力例｜【<phi_tel>095-652-2120</phi_tel>に連絡】
+    出力例｜【<phi_tel>095-107-7675</phi_tel>に連絡】

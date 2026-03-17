@@ -1,0 +1,20 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+data/*
+outputs/
+configs/*
+
+!data/guidelines/
+!data/guideline_*.txt
+!data/name*.ndjson
+!data/location*.csv
+!configs/sample.yaml

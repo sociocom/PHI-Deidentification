@@ -1,0 +1,7 @@
+- <phi_age>...</phi_age>：年齢表現を ±10% の範囲で変更
+
+  入力例｜今年で<phi_age>80歳</phi_age>
+  出力例｜今年で<phi_age>87歳</phi_age>
+
+  入力例｜喫煙歴（<phi_age>20ー40歳</phi_age>）
+  出力例｜喫煙歴（<phi_age>23ー43歳</phi_age>）

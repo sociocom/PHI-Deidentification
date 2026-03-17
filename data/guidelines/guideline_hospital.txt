@@ -1,0 +1,13 @@
+- <phi_hospital>...</phi_hospital>：病院名を置換（病院/クリニック/医療センターなどの語尾は元に合わせる）
+  - 人名っぽい病院名→ 以下のリストの姓を使う
+  ★Candidate Names★：（ここにNamesリストを貼る）
+  - 地名っぽい病院名→ 以下のリストから元の粒度に合う地名の部分だけ使う（市立→市名、県立→県名など）
+  ★Candidate Locations★：（ここにLocationsリストを貼る）
+
+  入力例｜<phi_hospital>清水内科クリニック</phi_hospital>を受診
+  Candidate Names例｜田中清
+  出力例｜<phi_hospital>田中内科クリニック</phi_hospital>を受診
+
+  入力例｜<phi_hospital>市民中央がんセンター</phi_hospital>からの紹介
+  Candidate Locations例｜朝凪県桜風市影綾町2丁目
+  出力例｜<phi_hospital>桜風市立中央がんセンター</phi_hospital>からの紹介

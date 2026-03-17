@@ -1,0 +1,13 @@
+- <phi_person>...</phi_person>：医師名，患者名，家族名などを架空の名前に置き換え
+ 【重要】以下のリストからのみ選択すること。リスト外の人名は使用禁止。
+  ★Candidate Names★：（ここにNamesリストを貼る）
+  ※姓のみ→リストの姓部分のみ使用、名のみ→リストの名部分のみ使用、フルネーム→リストのフルネームを使用
+  ※ひらがな/カタカナに変換してもよい（例：見上→みかみ、睦希→むつき）
+
+  入力例｜<phi_person>佐藤</phi_person>先生の紹介で夫（<phi_person>朋孝</phi_person>）と来院
+  Candidate Names例｜田中健二
+  出力例｜<phi_person>田中</phi_person>教授の紹介で夫（<phi_person>健二</phi_person>）と来院
+
+  入力例｜フリガナ	<phi_person>ｽｽﾞｷ ﾄﾓﾋｺ</phi_person>
+  Candidate Names例｜木村太郎
+  出力例｜フリガナ	<phi_person>キムラ タロウ</phi_person>
