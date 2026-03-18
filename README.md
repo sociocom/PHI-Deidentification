@@ -42,7 +42,7 @@
 
 ## 2. 環境構築 (Requirement)
 
-Python 3.13，[uv](https://github.com/astral-sh/uv) を使用します．
+Python 3.13、[uv](https://github.com/astral-sh/uv) を使用します。
 
 ```bash
 git clone <repository_url>
@@ -123,6 +123,16 @@ cp configs/sample.yaml configs/ntcir.yaml
 | カラム名 | 説明 |
 |----------|------|
 | `text` | 匿名化対象の医療テキスト（設定の `phi_stage.input_col` で変更可） |
+
+### モデルのダウンロード
+
+PHIタグ推論用のLoRAアダプタは HuggingFace からダウンロードしてください．
+
+```bash
+huggingface-cli download sociocom/MedPHI-NER --local-dir outputs/models/llama-3.1_phi_tag/best
+```
+
+> **注意:** ダウンロード先は設定ファイルの `phi_stage.lora_path` に合わせてください。
 
 ### 実行コマンド
 
