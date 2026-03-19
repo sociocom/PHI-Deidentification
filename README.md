@@ -126,7 +126,7 @@ cp configs/sample.yaml configs/ntcir.yaml
 
 ### モデルのダウンロード
 
-PHIタグ推論用のLoRAアダプタは HuggingFace からダウンロードしてください．
+PHIタグ推論用のモデルは[ HuggingFace](https://huggingface.co/sociocom/MedPHINER-Llama-3.1-Swallow-8B-Instruct-v0.5) からダウンロードしてください．
 
 ```bash
 huggingface-cli download sociocom/MedPHINER-Llama-3.1-Swallow-8B-Instruct-v0.5 --local-dir outputs/models/llama-3.1_phi_tag/best

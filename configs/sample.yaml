@@ -10,8 +10,7 @@ paths:
   output_root: outputs
 
 phi_stage:
-  model_id: /data/llmcache/tokyotech-llm/Llama-3.1-Swallow-8B-Instruct-v0.5
-  lora_path: outputs/models/llama-3.1_phi_tag/best
+  model_id: sociocom/MedPHINER-Llama-3.1-Swallow-8B-Instruct-v0.5
   guideline_path: data/guideline_phi_ner.txt
   input_col: text
   output_col: pred_anonymized_text

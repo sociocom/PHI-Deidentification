@@ -7,14 +7,12 @@ import pandas as pd
 import torch
 
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-from peft import PeftModel
 
 from deid_pipeline.config import load_config
 from deid_pipeline.common import (
     validate_shard_args,
     split_dataframe_for_shard,
     save_csv,
-    build_gen_kwargs,
 )
 
 STRUCTURED_TEMPLATE = """
@@ -48,7 +46,7 @@ def build_prompt(guideline: str, record_text: str) -> str:
     return template.replace("<text>", record_text.strip())
 
 
-def load_model_and_tokenizer(model_id: str, lora_path: str):
+def load_model_and_tokenizer(model_id: str):
     tokenizer = AutoTokenizer.from_pretrained(
         model_id,
         use_fast=True,
@@ -65,18 +63,15 @@ def load_model_and_tokenizer(model_id: str, lora_path: str):
         bnb_4bit_quant_type="nf4",
     )
 
-    print("Load base model...")
-    base = AutoModelForCausalLM.from_pretrained(
+    model = AutoModelForCausalLM.from_pretrained(
         model_id,
         device_map="auto",
-        torch_dtype=torch.bfloat16,
+        dtype=torch.bfloat16,
         quantization_config=quant_cfg,
         use_cache=True,
-    )
-
-    print("Attach LoRA adapters...")
-    model = PeftModel.from_pretrained(base, lora_path)
+    )    
     model.eval()
+    torch.cuda.empty_cache()
 
     return model, tokenizer
 
@@ -101,8 +96,9 @@ def generate_one(
     )
     enc = {k: v.to(model.device) for k, v in enc.items()}
 
-    gen_kwargs = build_gen_kwargs(
+    gen_kwargs = dict(
         max_new_tokens=max_new_tokens,
+        do_sample=(temperature > 0.0),
         temperature=temperature,
         top_p=top_p,
         repetition_penalty=repetition_penalty,
@@ -133,7 +129,6 @@ def main():
     guideline = load_guideline(stage_cfg["guideline_path"])
     model, tokenizer = load_model_and_tokenizer(
         stage_cfg["model_id"],
-        stage_cfg["lora_path"],
     )
 
     df = pd.read_csv(args.input_csv)

@@ -113,7 +113,7 @@ def build_prompt(
     return prompt
 
 
-def load_model_and_tokenizer(model_id: str, use_4bit: bool = False):
+def load_model_and_tokenizer(model_id: str, use_4bit: bool = True):
     tokenizer = AutoTokenizer.from_pretrained(
         model_id,
         use_fast=True,
@@ -135,7 +135,7 @@ def load_model_and_tokenizer(model_id: str, use_4bit: bool = False):
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            torch_dtype=torch.bfloat16,
+            dtype=torch.bfloat16,
             quantization_config=quant_cfg,
             use_cache=True,
         )
@@ -143,11 +143,13 @@ def load_model_and_tokenizer(model_id: str, use_4bit: bool = False):
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
-            torch_dtype=torch.bfloat16,
+            dtype=torch.bfloat16,
             use_cache=True,
         )
 
     model.eval()
+    torch.cuda.empty_cache()
+
     return model, tokenizer
 
 
