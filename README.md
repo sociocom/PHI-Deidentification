@@ -129,7 +129,7 @@ cp configs/sample.yaml configs/ntcir.yaml
 PHIタグ推論用のLoRAアダプタは HuggingFace からダウンロードしてください．
 
 ```bash
-huggingface-cli download sociocom/MedPHI-NER --local-dir outputs/models/llama-3.1_phi_tag/best
+huggingface-cli download sociocom/MedPHINER-Llama-3.1-Swallow-8B-Instruct-v0.5 --local-dir outputs/models/llama-3.1_phi_tag/best
 ```
 
 > **注意:** ダウンロード先は設定ファイルの `phi_stage.lora_path` に合わせてください。
